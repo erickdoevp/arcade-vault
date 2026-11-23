@@ -451,6 +451,9 @@
     filter: drop-shadow(0 0 14px rgba(255, 0, 110, 0.45));
   }
 
+  /* ticker row entrance (used via animate-[tickin…]) */
+  @keyframes tickin { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+
   /* scroll reveal (RevealObserver adds .in) */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms ease, transform 600ms ease; }
   .reveal.in { opacity: 1; transform: none; }
