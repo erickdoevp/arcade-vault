@@ -2,8 +2,11 @@
 
 /* ===== ARCADE VAULT — theme =====
  * Ported from references/templates/styles.css.
- * Fonts are loaded with next/font in app/layout.tsx and exposed as
- * --font-press-start, --font-jetbrains-mono and --font-courier-prime.
+ * Fonts are loaded with next/font in app/layout.tsx. The stacks below name
+ * the families literally instead of using the --font-* variables: those
+ * variables insert an Arial-based "… Fallback" face before Courier Prime, so
+ * glyphs the fonts lack (▲ ▶ ♥ ★ ▸ ◆ ▣) would render larger than in
+ * references/templates. Turbopack ignores `adjustFontFallback: false`.
  */
 :root {
   --bg: #0a0a0f;
@@ -21,8 +24,8 @@
   --bronze: #d97a3a;
   --line: rgba(0, 245, 255, 0.18);
   --line-2: rgba(255, 255, 255, 0.06);
-  --pixel: var(--font-press-start), "Press Start 2P", system-ui, monospace;
-  --mono: var(--font-jetbrains-mono), "JetBrains Mono", var(--font-courier-prime), "Courier Prime", "Courier New", monospace;
+  --pixel: "Press Start 2P", system-ui, monospace;
+  --mono: "JetBrains Mono", "Courier Prime", "Courier New", monospace;
   color-scheme: dark;
 }
 
@@ -140,7 +143,6 @@
   .neon-cyan { color: var(--cyan); text-shadow: 0 0 6px rgba(0, 245, 255, 0.65), 0 0 16px rgba(0, 245, 255, 0.45); }
   .neon-magenta { color: var(--magenta); text-shadow: 0 0 6px rgba(255, 0, 110, 0.65), 0 0 16px rgba(255, 0, 110, 0.45); }
   .neon-yellow { color: var(--yellow); text-shadow: 0 0 6px rgba(245, 255, 0, 0.7), 0 0 16px rgba(245, 255, 0, 0.4); }
-  .neon-green { color: var(--green); text-shadow: 0 0 6px rgba(0, 255, 136, 0.6), 0 0 16px rgba(0, 255, 136, 0.35); }
 
   .flicker {
     animation: flicker 5s infinite steps(1, end);
@@ -396,25 +398,9 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* misc */
-  .divider { height: 1px; background: var(--line); margin: 8px 0; }
+  /* ===== entrance animations ===== */
   .fade-in { animation: fadeIn 240ms ease-out; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
   .slide-in { animation: slideIn 260ms ease-out; }
   @keyframes slideIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
-
-  /* tweaks */
-  .tw-section { margin-bottom: 14px; }
-  .tw-label { font-family: var(--pixel); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.14em; margin-bottom: 8px; }
-
-  /* spinner */
-  .spinner {
-    display: inline-block;
-    width: 16px; height: 16px;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-    animation: spinpix 0.6s steps(8) infinite;
-    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  }
-  @keyframes spinpix { to { transform: rotate(360deg); } }
 }
