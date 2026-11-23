@@ -137,7 +137,7 @@ export function GamePlayer({ game }: { game: Game }) {
             )}
             <div className="mt-[18px] flex flex-wrap justify-center gap-2.5">
               <Button onClick={restart}>JUGAR DE NUEVO</Button>
-              <ButtonLink href="/" variant="magenta">
+              <ButtonLink href="/games" variant="magenta">
                 VOLVER AL VAULT
               </ButtonLink>
             </div>
