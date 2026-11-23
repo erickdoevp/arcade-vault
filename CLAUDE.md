@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 @AGENTS.md
 
+## Usa siempre /frontend-design para diseñar interfaces de usuario.
+
 ## Project
 
 Arcade Vault is an online platform for playing games and competing for the highest score. It is at the scaffold stage (fresh `create-next-app`): `app/page.tsx` and `app/layout.tsx` still hold template content and metadata.
