@@ -2,11 +2,12 @@ import { ButtonLink } from "@/components/button";
 import { FeatureIcon } from "@/components/feature-icon";
 import { HomeSilhouettes } from "@/components/home-silhouettes";
 import { MiniCard } from "@/components/mini-card";
+import { RevealObserver } from "@/components/reveal-observer";
 import { GAMES, type NeonColor } from "@/lib/games";
 import Link from "next/link";
-import { FEATURES, HOME_STATS, TICKER, TOP_TODAY } from "@/lib/home";
+import { FAQ, FEATURES, HOME_STATS, PRICING_ITEMS, TICKER, TOP_TODAY } from "@/lib/home";
 
-const SECTION = "mx-auto my-20 max-w-[1320px] px-8";
+const SECTION = "reveal mx-auto my-20 max-w-[1320px] px-8";
 
 /** Neon text per color. `neon-green` doesn't exist in globals.css, so green is spelled out. */
 const NEON_TEXT: Record<NeonColor, string> = {
@@ -39,6 +40,9 @@ const TOP_STYLE = [
     glow: "before:bg-[linear-gradient(90deg,rgba(0,245,255,0.06),transparent)]",
   },
 ];
+
+/** Left accent of each FAQ item, in order. */
+const FAQ_ACCENT = ["border-l-cyan", "border-l-magenta", "border-l-yellow"];
 
 const AC_HEAD = "flex min-w-0 items-center justify-between gap-2.5 border-b border-line px-3.5 py-3";
 const AC_TITLE =
@@ -96,7 +100,7 @@ export function Home() {
             aria-hidden="true"
           >
             <span>DESLIZA</span>
-            <span className="animate-[bounce_1.6s_ease-in-out_infinite] text-cyan motion-reduce:animate-none">▼</span>
+            <span className="animate-[av-bounce_1.6s_ease-in-out_infinite] text-cyan motion-reduce:animate-none">▼</span>
           </div>
         </div>
       </section>
@@ -135,7 +139,7 @@ export function Home() {
       </section>
 
       {/* STATS */}
-      <section className="relative overflow-hidden border-y border-line bg-[linear-gradient(180deg,#06060a,#0c0c14)] px-8 py-[60px] before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(80%_60%_at_50%_50%,rgba(245,255,0,0.06),transparent_70%)] before:content-['']">
+      <section className="reveal relative overflow-hidden border-y border-line bg-[linear-gradient(180deg,#06060a,#0c0c14)] px-8 py-[60px] before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(80%_60%_at_50%_50%,rgba(245,255,0,0.06),transparent_70%)] before:content-['']">
         <div className="relative mx-auto grid max-w-[1200px] grid-cols-[repeat(3,1fr)] gap-8 max-[720px]:grid-cols-[1fr]">
           {HOME_STATS.map((st, i) => (
             <div
@@ -212,6 +216,70 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      {/* PRICING */}
+      <section className={SECTION}>
+        <SectionHead kicker="// 04" color="green" title="PRECIOS" />
+        <div className="grid grid-cols-[1fr_1fr] items-stretch gap-6 max-[900px]:grid-cols-[1fr]">
+          <div className="relative flex flex-col gap-3.5 border border-green bg-[linear-gradient(180deg,var(--bg-2),#0a0e16)] px-7 py-8 shadow-[0_0_28px_rgba(0,255,136,0.18),inset_0_0_14px_rgba(0,255,136,0.08)] before:pointer-events-none before:absolute before:inset-1 before:border before:border-dashed before:border-[rgba(0,255,136,0.3)] before:content-['']">
+            <div className="pixel text-[9px] tracking-[0.22em] text-ink-dim">PLAN ÚNICO</div>
+            <div className="pixel text-[16px] tracking-[0.08em] text-green [text-shadow:0_0_10px_rgba(0,255,136,0.5)]">
+              JUGADOR VAULT
+            </div>
+            <div className="mt-1.5 flex items-baseline gap-2.5">
+              <span className="bg-[linear-gradient(180deg,#fff,var(--green))] bg-clip-text font-pixel text-[64px] tracking-[0.02em] text-transparent drop-shadow-[0_0_12px_rgba(0,255,136,0.5)]">
+                $0
+              </span>
+              <span className="font-pixel text-[11px] tracking-[0.16em] text-ink-dim">/ SIEMPRE</span>
+            </div>
+            <div className="font-pixel text-[9px] tracking-[0.18em] text-yellow [text-shadow:0_0_6px_rgba(245,255,0,0.45)]">
+              SIN TRUCOS · SIN LETRA PEQUEÑA
+            </div>
+            <ul className="mb-1 mt-2.5 flex list-none flex-col gap-2 p-0">
+              {PRICING_ITEMS.map((item) => (
+                <li key={item} className="font-mono text-[13px] tracking-[0.02em] text-ink first-letter:text-green">
+                  ✔ {item}
+                </li>
+              ))}
+            </ul>
+            <ButtonLink href="/login" size="xl" pulse className="w-full">
+              EMPEZAR GRATIS →
+            </ButtonLink>
+            <div className="mt-1 text-center font-mono text-[11px] tracking-[0.1em] text-ink-faint">
+              No pedimos tarjeta. Nunca lo haremos.
+            </div>
+            <div className="pixel absolute -right-[18px] -top-[18px] z-[3] rotate-[14deg] border-2 border-magenta bg-[rgba(10,10,15,0.85)] px-[18px] py-2.5 text-center text-[13px] leading-[1.15] tracking-[0.16em] text-magenta shadow-[0_0_14px_rgba(255,0,110,0.35),inset_0_0_8px_rgba(255,0,110,0.2)] [text-shadow:0_0_8px_rgba(255,0,110,0.6)]">
+              FREE
+              <br />
+              PLAY
+            </div>
+          </div>
+
+          <div className="flex flex-col justify-center gap-3.5">
+            {FAQ.map((f, i) => (
+              <div key={f.q} className={`border border-l-[3px] border-line bg-bg-2 px-5 py-[18px] ${FAQ_ACCENT[i]}`}>
+                <div className="pixel mb-2 text-[10px] tracking-[0.12em] text-ink">{f.q}</div>
+                <div className="font-mono text-[13px] leading-[1.6] text-ink-dim">{f.a}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="reveal relative mx-auto max-w-[900px] px-8 pb-[120px] pt-[100px] text-center before:absolute before:left-1/2 before:top-[30px] before:h-px before:w-[60%] before:-translate-x-1/2 before:bg-[linear-gradient(90deg,transparent,var(--cyan),transparent)] before:opacity-50 before:content-[''] after:absolute after:bottom-[30px] after:left-1/2 after:h-px after:w-[60%] after:-translate-x-1/2 after:bg-[linear-gradient(90deg,transparent,var(--cyan),transparent)] after:opacity-50 after:content-['']">
+        <h2 className="pixel mb-9 mt-0 bg-[linear-gradient(180deg,#fff,var(--yellow))] bg-clip-text text-[clamp(22px,4vw,40px)] tracking-[0.08em] text-transparent drop-shadow-[0_0_12px_rgba(245,255,0,0.4)]">
+          ¿LISTO PARA JUGAR?
+        </h2>
+        <ButtonLink href="/games" size="xl" pulse>
+          INSERTAR MONEDA →
+        </ButtonLink>
+        <div className="mt-7 text-[13px] tracking-[0.06em] text-ink-dim">
+          Gratis. Sin registro obligatorio. Empieza en segundos.
+        </div>
+      </section>
+
+      <RevealObserver />
     </div>
   );
 }

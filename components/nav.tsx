@@ -6,10 +6,11 @@ import { useState } from "react";
 import { Button, ButtonLink } from "@/components/button";
 import { useUser } from "@/components/user-provider";
 
-type Section = "biblioteca" | "salon" | "auth";
+type Section = "inicio" | "biblioteca" | "salon" | "auth";
 
 function activeSection(pathname: string): Section | null {
-  if (pathname === "/" || pathname.startsWith("/games/")) return "biblioteca";
+  if (pathname === "/") return "inicio";
+  if (pathname === "/games" || pathname.startsWith("/games/")) return "biblioteca";
   if (pathname === "/hall-of-fame") return "salon";
   if (pathname === "/login") return "auth";
   return null;
@@ -37,7 +38,7 @@ export function Nav() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 flex items-center gap-6 px-8 py-3.5 max-[840px]:px-4 max-[840px]:py-3 bg-linear-to-b from-[rgba(10,10,15,0.92)] to-[rgba(10,10,15,0.78)] backdrop-blur-[8px] border-b border-line">
+      <nav className="sticky top-0 z-50 flex items-center gap-6 px-8 py-3.5 max-[840px]:gap-3 max-[840px]:px-4 max-[840px]:py-3 bg-linear-to-b from-[rgba(10,10,15,0.92)] to-[rgba(10,10,15,0.78)] backdrop-blur-[8px] border-b border-line">
         <Link href="/" onClick={close} className="flex items-center gap-2.5 cursor-pointer">
           <div className="size-7 border border-white/18 [background-blend-mode:screen] bg-[linear-gradient(45deg,var(--magenta)_0_50%,transparent_50%),linear-gradient(-45deg,var(--cyan)_0_50%,transparent_50%)] shadow-[0_0_12px_rgba(0,245,255,0.55),inset_0_0_6px_rgba(255,0,110,0.5)]" />
           <div className="neon-cyan font-pixel text-[12px] tracking-[0.12em]">
@@ -46,7 +47,10 @@ export function Nav() {
         </Link>
 
         <div className="ml-8 flex gap-1 max-[840px]:hidden">
-          <Link href="/" className={desktopLink("biblioteca")}>
+          <Link href="/" className={desktopLink("inicio")}>
+            Inicio
+          </Link>
+          <Link href="/games" className={desktopLink("biblioteca")}>
             Biblioteca
           </Link>
           <Link href="/hall-of-fame" className={desktopLink("salon")}>
@@ -62,11 +66,11 @@ export function Nav() {
         </div>
 
         {user ? (
-          <Button variant="ghost" className="ml-4" onClick={logout}>
+          <Button variant="ghost" className="ml-4 max-[840px]:ml-0" onClick={logout}>
             {user.name} ▾
           </Button>
         ) : (
-          <ButtonLink href="/login" className="ml-4">
+          <ButtonLink href="/login" className="ml-4 max-[840px]:ml-0">
             Iniciar Sesión
           </ButtonLink>
         )}
@@ -93,7 +97,10 @@ export function Nav() {
         }`}
       >
         <div className="pixel neon-cyan mb-4 text-[11px]">MENÚ</div>
-        <Link href="/" onClick={close} className={mobileLink("biblioteca")}>
+        <Link href="/" onClick={close} className={mobileLink("inicio")}>
+          Inicio
+        </Link>
+        <Link href="/games" onClick={close} className={mobileLink("biblioteca")}>
           Biblioteca
         </Link>
         <Link href="/hall-of-fame" onClick={close} className={mobileLink("salon")}>

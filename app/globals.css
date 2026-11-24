@@ -153,8 +153,9 @@
   }
 
   /* ===== pulse glow (used by <Button pulse>) ===== */
-  .pulse { animation: pulse 1.6s ease-in-out infinite; }
-  @keyframes pulse {
+  /* `av-` prefix: Tailwind emits its own `pulse` keyframes after ours and would win. */
+  .pulse { animation: av-pulse 1.6s ease-in-out infinite; }
+  @keyframes av-pulse {
     0%, 100% { box-shadow: 0 0 0 transparent, inset 0 0 0 transparent; }
     50% { box-shadow: 0 0 20px var(--cyan), inset 0 0 12px rgba(0,245,255,0.45); }
   }
@@ -410,9 +411,9 @@
    * silhouettes and the gradient text of the title. The rest is utilities.
    */
 
-  /* hero arrow (used via animate-[bounce…]). Overrides Tailwind's own
-   * `bounce` keyframes, which are only emitted if `animate-bounce` is used. */
-  @keyframes bounce { 50% { transform: translateY(6px); } }
+  /* hero arrow (used via animate-[av-bounce…]). `av-` prefix: Tailwind emits its
+   * own `bounce` keyframes after ours and would win. */
+  @keyframes av-bounce { 50% { transform: translateY(6px); } }
 
   /* floating pixel silhouettes */
   @keyframes float {
