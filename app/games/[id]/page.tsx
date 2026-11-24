@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ButtonLink } from "@/components/button";
 import { Leaderboard } from "@/components/leaderboard";
@@ -11,7 +12,24 @@ const TAG = "border border-line px-2.5 py-1.5 font-pixel text-[9px] tracking-[0.
 const STAT_LABEL = "font-mono text-[10px] uppercase tracking-[0.12em] text-ink-faint";
 const STAT_VALUE = "mt-1.5 font-pixel text-[16px]";
 
-export default async function GameDetailPage({ params }: PageProps<"/games/[id]">) {
+export default function GameDetailPage({ params }: PageProps<"/games/[id]">) {
+  return (
+    <Suspense fallback={<GameDetailSkeleton />}>
+      <GameDetail params={params} />
+    </Suspense>
+  );
+}
+
+function GameDetailSkeleton() {
+  return (
+    <div className="mx-auto my-12 grid max-w-[1320px] grid-cols-[1.4fr_1fr] gap-8 px-8 max-[900px]:grid-cols-1 max-[720px]:my-6 max-[720px]:px-4">
+      <div className="aspect-[16/10] animate-pulse border border-line bg-bg-2" />
+      <div className="min-h-[320px] animate-pulse border border-line bg-bg-2" />
+    </div>
+  );
+}
+
+async function GameDetail({ params }: { params: PageProps<"/games/[id]">["params"] }) {
   const { id } = await params;
   const game = getGame(id);
   if (!game) notFound();
@@ -53,7 +71,7 @@ export default async function GameDetailPage({ params }: PageProps<"/games/[id]"
             <ButtonLink href={`/games/${game.id}/play`} size="xl" pulse>
               ▶  JUGAR AHORA
             </ButtonLink>
-            <ButtonLink href="/" variant="ghost" size="lg">
+            <ButtonLink href="/games" variant="ghost" size="lg">
               VOLVER AL VAULT
             </ButtonLink>
           </div>

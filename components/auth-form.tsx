@@ -24,12 +24,12 @@ export function AuthForm() {
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login(user);
-    router.push("/");
+    router.push("/games");
   };
 
   const playAsGuest = () => {
     logout();
-    router.push("/");
+    router.push("/games");
   };
 
   return (
