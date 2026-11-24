@@ -1,6 +1,6 @@
 # SPEC 02 — Landing de inicio y Biblioteca en `/games`
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-11-23
 > **Objetivo:** Portar la landing de `references/templates/home-about/home.jsx` a la ruta `/`, idéntica a `arcade-vault-standalone.html`, y mover la Biblioteca de `/` a `/games`.
@@ -157,31 +157,31 @@ export const FAQ: FaqItem[];           // 3
 
 ## Criterios de aceptación
 
-- [ ] `npm run build` termina sin errores.
-- [ ] `npm run lint` termina sin errores.
-- [ ] `/` muestra la landing.
-- [ ] `/games` muestra la Biblioteca con las 8 cards, buscador y chips, igual que antes en `/`.
-- [ ] A 1440 px, la landing en `/` coincide visualmente con `arcade-vault-standalone.html` (pantalla de inicio), sección por sección, en capturas lado a lado.
-- [ ] A 375 px no hay scroll horizontal en `/`; el mini-rail queda en 2 columnas, las features en 1 y las stats en 1.
-- [ ] El hero muestra 8 siluetas flotando, el título en 3 líneas con sus degradados y `DESLIZA ▼` rebotando.
-- [ ] Las secciones 2 a 7 empiezan invisibles y aparecen al entrar en pantalla.
-- [ ] Con `prefers-reduced-motion: reduce` emulado, todas las secciones son visibles sin hacer scroll, y las siluetas y la flecha están quietas.
-- [ ] El ticker muestra 7 filas con puntuaciones en formato `es-ES` (`+184.220`).
-- [ ] El top muestra 5 filas con `#01`–`#05` y barras al 100, 84, 68, 52 y 36 %.
-- [ ] `EXPLORAR JUEGOS`, `VER TODOS LOS JUEGOS →` e `INSERTAR MONEDA →` navegan a `/games`.
-- [ ] `CREAR CUENTA` y `EMPEZAR GRATIS →` navegan a `/login`.
-- [ ] Clic en la mini-card de un juego navega a `/games/<id>`.
-- [ ] `VER SALÓN →` navega a `/hall-of-fame`.
-- [ ] El nav muestra `Inicio` antes de `Biblioteca` en escritorio y en el panel móvil.
-- [ ] `Inicio` está activo solo en `/`.
-- [ ] `Biblioteca` está activo en `/games`, `/games/<id>` y `/games/<id>/play`, y no en `/`.
-- [ ] El logo del nav navega a `/`.
-- [ ] `VOLVER AL VAULT` del detalle y del modal del reproductor navegan a `/games`.
-- [ ] `VOLVER A LA BIBLIOTECA` del Salón navega a `/games`.
-- [ ] `VOLVER AL VAULT` del 404 navega a `/`.
-- [ ] Enviar el login o pulsar `JUGAR COMO INVITADO` navega a `/games`.
-- [ ] La consola del navegador no muestra errores ni warnings de hidratación en `/` ni en `/games`.
-- [ ] Ninguna clase añadida a `globals.css` queda sin uso en `app/` o `components/`.
+- [x] `npm run build` termina sin errores.
+- [x] `npm run lint` termina sin errores.
+- [x] `/` muestra la landing.
+- [x] `/games` muestra la Biblioteca con las 8 cards, buscador y chips, igual que antes en `/`.
+- [x] A 1440 px, la landing en `/` coincide visualmente con `arcade-vault-standalone.html` (pantalla de inicio), sección por sección, en capturas lado a lado.
+- [x] A 375 px no hay scroll horizontal en `/`; el mini-rail queda en 2 columnas, las features en 1 y las stats en 1.
+- [x] El hero muestra 8 siluetas flotando, el título en 3 líneas con sus degradados y `DESLIZA ▼` rebotando.
+- [x] Las secciones 2 a 7 empiezan invisibles y aparecen al entrar en pantalla.
+- [x] Con `prefers-reduced-motion: reduce` emulado, todas las secciones son visibles sin hacer scroll, y las siluetas y la flecha están quietas.
+- [x] El ticker muestra 7 filas con puntuaciones en formato `es-ES` (`+184.220`).
+- [x] El top muestra 5 filas con `#01`–`#05` y barras al 100, 84, 68, 52 y 36 %.
+- [x] `EXPLORAR JUEGOS`, `VER TODOS LOS JUEGOS →` e `INSERTAR MONEDA →` navegan a `/games`.
+- [x] `CREAR CUENTA` y `EMPEZAR GRATIS →` navegan a `/login`.
+- [x] Clic en la mini-card de un juego navega a `/games/<id>`.
+- [x] `VER SALÓN →` navega a `/hall-of-fame`.
+- [x] El nav muestra `Inicio` antes de `Biblioteca` en escritorio y en el panel móvil.
+- [x] `Inicio` está activo solo en `/`.
+- [x] `Biblioteca` está activo en `/games`, `/games/<id>` y `/games/<id>/play`, y no en `/`.
+- [x] El logo del nav navega a `/`.
+- [x] `VOLVER AL VAULT` del detalle y del modal del reproductor navegan a `/games`.
+- [x] `VOLVER A LA BIBLIOTECA` del Salón navega a `/games`.
+- [x] `VOLVER AL VAULT` del 404 navega a `/`.
+- [x] Enviar el login o pulsar `JUGAR COMO INVITADO` navega a `/games`.
+- [x] La consola del navegador no muestra errores ni warnings de hidratación en `/` ni en `/games`.
+- [x] Ninguna clase añadida a `globals.css` queda sin uso en `app/` o `components/`.
 
 ---
 
