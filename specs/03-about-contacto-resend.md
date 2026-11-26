@@ -1,6 +1,6 @@
 # SPEC 03 — Página «Acerca de» y formulario de contacto con Resend
 
-> **Estado:** Aprobada
+> **Estado:** Implementada
 > **Depende de:** SPEC 01, SPEC 02
 > **Fecha:** 2026-11-25
 > **Objetivo:** Portar `references/templates/home-about/about.jsx` a la ruta `/about`, idéntica a `arcade-vault-standalone.html`, y hacer que su formulario de contacto envíe un correo real al equipo mediante Resend desde una Server Action.
@@ -185,25 +185,25 @@ Para volver de `success`/`error` al formulario, el componente cliente guarda los
 
 ## Criterios de aceptación
 
-- [ ] `npm run build` termina sin errores.
-- [ ] `npm run lint` termina sin errores.
-- [ ] `/about` muestra hero, divisor y contacto con los textos literales de `about.jsx`.
-- [ ] A 1440 px, `/about` coincide visualmente con la pantalla «Acerca de» de `arcade-vault-standalone.html` en capturas lado a lado.
-- [ ] A 375 px no hay scroll horizontal en `/about`; los highlights y la rejilla de contacto quedan en 1 columna.
-- [ ] El divisor muestra 24 píxeles parpadeando con colores cian / magenta (cada 3.º) / amarillo (cada 5.º).
-- [ ] Divisor y contacto empiezan invisibles y aparecen al entrar en pantalla; con reduced-motion emulado son visibles y el divisor no parpadea.
-- [ ] El nav muestra `Acerca de` tras `Salón de la Fama` en escritorio y en el panel móvil, activo solo en `/about`.
-- [ ] Enviar con algún campo vacío (o solo espacios) provoca shake y **no** dispara ninguna petición al servidor.
-- [ ] Durante el envío el botón está deshabilitado, muestra el loader y `TRANSMITIENDO…`, y los campos no se pueden editar.
-- [ ] Con `.env.local` válido, enviar el formulario entrega un correo a `CONTACT_TO_EMAIL` con asunto `[Arcade Vault] Mensaje de <nombre>`, cuerpo en texto plano y `Reply-To` igual al correo introducido.
-- [ ] Tras un envío correcto se ve la terminal de éxito con `GRACIAS, <NOMBRE>.` en mayúsculas; `ENVIAR OTRO MENSAJE` deja el formulario vacío.
-- [ ] Sin `RESEND_API_KEY` se ve la terminal de error con `[ERR] NO SE PUDO TRANSMITIR EL MENSAJE. INTÉNTALO DE NUEVO.`; `REINTENTAR` devuelve el formulario con los valores escritos; el servidor registra el motivo con `console.error`.
-- [ ] Una petición a la acción con un correo inválido o un mensaje de más de 2000 caracteres devuelve `reason: "validation"` y no llama a Resend.
-- [ ] Una petición con el honeypot `website` relleno devuelve éxito y no llama a Resend.
-- [ ] La API key no aparece en el bundle del cliente (`grep -r "RESEND_API_KEY" .next/static` sin resultados).
-- [ ] `README.md` documenta las tres variables de entorno.
-- [ ] La consola del navegador no muestra errores ni warnings de hidratación en `/about`.
-- [ ] Ninguna clase añadida a `globals.css` queda sin uso en `app/` o `components/`.
+- [x] `npm run build` termina sin errores.
+- [x] `npm run lint` termina sin errores.
+- [x] `/about` muestra hero, divisor y contacto con los textos literales de `about.jsx`.
+- [x] A 1440 px, `/about` coincide visualmente con la pantalla «Acerca de» de `arcade-vault-standalone.html` en capturas lado a lado.
+- [x] A 375 px no hay scroll horizontal en `/about`; los highlights y la rejilla de contacto quedan en 1 columna.
+- [x] El divisor muestra 24 píxeles parpadeando con colores cian / magenta (cada 3.º) / amarillo (cada 5.º).
+- [x] Divisor y contacto empiezan invisibles y aparecen al entrar en pantalla; con reduced-motion emulado son visibles y el divisor no parpadea.
+- [x] El nav muestra `Acerca de` tras `Salón de la Fama` en escritorio y en el panel móvil, activo solo en `/about`.
+- [x] Enviar con algún campo vacío (o solo espacios) provoca shake y **no** dispara ninguna petición al servidor.
+- [x] Durante el envío el botón está deshabilitado, muestra el loader y `TRANSMITIENDO…`, y los campos no se pueden editar.
+- [x] Con `.env.local` válido, enviar el formulario entrega un correo a `CONTACT_TO_EMAIL` con asunto `[Arcade Vault] Mensaje de <nombre>`, cuerpo en texto plano y `Reply-To` igual al correo introducido.
+- [x] Tras un envío correcto se ve la terminal de éxito con `GRACIAS, <NOMBRE>.` en mayúsculas; `ENVIAR OTRO MENSAJE` deja el formulario vacío.
+- [x] Sin `RESEND_API_KEY` se ve la terminal de error con `[ERR] NO SE PUDO TRANSMITIR EL MENSAJE. INTÉNTALO DE NUEVO.`; `REINTENTAR` devuelve el formulario con los valores escritos; el servidor registra el motivo con `console.error`.
+- [x] Una petición a la acción con un correo inválido o un mensaje de más de 2000 caracteres devuelve `reason: "validation"` y no llama a Resend.
+- [x] Una petición con el honeypot `website` relleno devuelve éxito y no llama a Resend.
+- [x] La API key no aparece en el bundle del cliente (`grep -r "RESEND_API_KEY" .next/static` sin resultados).
+- [x] `README.md` documenta las tres variables de entorno.
+- [x] La consola del navegador no muestra errores ni warnings de hidratación en `/about`.
+- [x] Ninguna clase añadida a `globals.css` queda sin uso en `app/` o `components/`.
 
 ---
 
