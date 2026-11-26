@@ -459,8 +459,48 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms ease, transform 600ms ease; }
   .reveal.in { opacity: 1; transform: none; }
 
+  /* ===== ABOUT =====
+   * Ported from references/templates/home-about/styles.css (ABOUT PAGE block).
+   * Only keyframes, the divider's nth-child colours and the submit loader live
+   * here; the rest of the page is utilities.
+   */
+
+  /* divider pixels: base cyan, every 3rd magenta, every 5th yellow.
+   * Kept as CSS so the nth-child overrides win over the base colour. */
+  .div-pixels span {
+    width: 6px; height: 6px;
+    background: var(--cyan);
+    box-shadow: 0 0 6px var(--cyan);
+    animation: pxblink 2.4s steps(2) infinite;
+  }
+  .div-pixels span:nth-child(3n) { background: var(--magenta); box-shadow: 0 0 6px var(--magenta); }
+  .div-pixels span:nth-child(5n) { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+  @keyframes pxblink { 50% { opacity: 0.2; } }
+
+  /* contact form validation shake (used via motion-safe:animate-[shake_0.4s]) */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+
+  /* submit button loader: 3 cyan blocks blinking in sequence */
+  .btn-loader { display: inline-flex; gap: 3px; }
+  .btn-loader span {
+    width: 6px; height: 6px;
+    background: var(--cyan);
+    box-shadow: 0 0 6px var(--cyan);
+    animation: pxblink 0.9s steps(2) infinite;
+  }
+  .btn-loader span:nth-child(2) { animation-delay: 150ms; }
+  .btn-loader span:nth-child(3) { animation-delay: 300ms; }
+
   @media (prefers-reduced-motion: reduce) {
     .home-silos .silo { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
+    .div-pixels span,
+    .btn-loader span { animation: none; }
   }
 }

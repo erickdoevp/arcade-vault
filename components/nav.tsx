@@ -6,12 +6,13 @@ import { useState } from "react";
 import { Button, ButtonLink } from "@/components/button";
 import { useUser } from "@/components/user-provider";
 
-type Section = "inicio" | "biblioteca" | "salon" | "auth";
+type Section = "inicio" | "biblioteca" | "salon" | "about" | "auth";
 
 function activeSection(pathname: string): Section | null {
   if (pathname === "/") return "inicio";
   if (pathname === "/games" || pathname.startsWith("/games/")) return "biblioteca";
   if (pathname === "/hall-of-fame") return "salon";
+  if (pathname === "/about") return "about";
   if (pathname === "/login") return "auth";
   return null;
 }
@@ -55,6 +56,9 @@ export function Nav() {
           </Link>
           <Link href="/hall-of-fame" className={desktopLink("salon")}>
             Salón de la Fama
+          </Link>
+          <Link href="/about" className={desktopLink("about")}>
+            Acerca de
           </Link>
         </div>
 
@@ -105,6 +109,9 @@ export function Nav() {
         </Link>
         <Link href="/hall-of-fame" onClick={close} className={mobileLink("salon")}>
           Salón de la Fama
+        </Link>
+        <Link href="/about" onClick={close} className={mobileLink("about")}>
+          Acerca de
         </Link>
         <Link href="/login" onClick={close} className={mobileLink("auth")}>
           {user ? "Cuenta" : "Iniciar Sesión"}
